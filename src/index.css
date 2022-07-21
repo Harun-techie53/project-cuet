@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-el {
+    @apply md:px-4 md:py-2 text-lg hover:text-gray-800;
+}
+
+.table-heading {
+    @apply w-1/6
+    min-w-[160px]
+    text-lg
+    font-semibold
+    text-white
+    py-4;
+}
+
+.tabel-data-primary {
+    @apply text-center
+    font-medium
+    text-base
+    py-5
+    px-2
+    bg-[#F3F6FF];
+}
+
+.tabel-data-secondary {
+    @apply text-center
+    font-medium
+    text-base
+    py-5
+    px-2
+    bg-white;
+}
+
+.btn-blue {
+    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+}
+
+.btn-red {
+    @apply text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900;
+}
+
+.input-elem {
+    @apply w-full rounded-md p-2 focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:dark:border-gray-700 dark:dark:text-gray-900;
+}
