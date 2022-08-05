@@ -1,80 +1,70 @@
-import React, {useState, Fragment} from 'react';
-import { IconButton, Tooltip, Grid } from '@mui/material';
-import VideocamIcon from '@mui/icons-material/Videocam';
-import VideocamOffIcon from '@mui/icons-material/VideocamOff';
-import MicIcon from '@mui/icons-material/Mic';
-import MicOffIcon from '@mui/icons-material/MicOff';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { useClient } from '../../settings';
+import { useState } from 'react'
+import { useClient } from './settings'
+import { Grid, Button } from '@material-ui/core'
+import MicIcon from '@material-ui/icons/Mic'
+import MicOffIcon from '@material-ui/icons/MicOff'
+import VideocamIcon from '@material-ui/icons/Videocam'
+import VideocamOffIcon from '@material-ui/icons/VideocamOff'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-const Controls = ({ 
-    setInCall,
-    setStart,
-    tracks
-}) => {
-    const client = useClient();
-    const [trackState, setTrackState] = useState({ video: true, audio: true });
+export default function Controls (props) {
+  const client = useClient()
+  const { tracks, setStart, setInCall } = props
+  const [trackState, setTrackState] = useState({ video: true, audio: true })
 
-    const muteHandler = async (mediaType) => {
-        if(mediaType === 'audio') {
-            await tracks[0].setEnabled(!trackState.audio);
-            setTrackState((prevState) => {
-                return {
-                    ...prevState,
-                    audio: !prevState.audio
-                }
-            });
-        }
-
-        if(mediaType === 'video') {
-            await tracks[1].setEnabled(!trackState.video);
-            setTrackState((prevState) => {
-                return {
-                    ...prevState,
-                    video: !prevState.video
-                }
-            });
-        }
+  const mute = async type => {
+    if (type === 'audio') {
+      await tracks[0].setEnabled(!trackState.audio)
+      setTrackState(ps => {
+        return { ...ps, audio: !ps.audio }
+      })
+    } else if (type === 'video') {
+      await tracks[1].setEnabled(!trackState.video)
+      setTrackState(ps => {
+        return { ...ps, video: !ps.video }
+      })
     }
+  }
 
-    const leaveChannel = async () => {
-        await client.leave();
-        client.removeAllListeners();
-        tracks[0].close();
-        tracks[1].close();
-        setStart(false);
-        setInCall(false);
-    }
-    return (
-        <Fragment>
-            <Grid container spacing={2} alignItems='center'>
-                <Grid item>
-                    <IconButton 
-                        color={ trackState.audio ? 'primary' : 'secondary' }
-                        onClick={() => muteHandler('audio')}
-                    >
-                        { trackState.audio ? <MicIcon/> : <MicOffIcon/> }
-                    </IconButton>
-                </Grid>
-                <Grid item>
-                    <IconButton
-                        color={ trackState.audio ? 'primary' : 'secondary' }
-                        onClick={() => muteHandler('video')} 
-                    >
-                        { trackState.video ? <VideocamIcon/> : <VideocamOffIcon/> }
-                    </IconButton>
-                </Grid>
-                <Grid item>
-                    <IconButton 
-                        color='secondary'
-                        onClick={leaveChannel}
-                    >
-                        <ExitToAppIcon/>
-                    </IconButton>
-                </Grid>
-            </Grid>
-        </Fragment>
-    )
+  const leaveChannel = async () => {
+    await client.leave()
+    client.removeAllListeners()
+    tracks[0].close()
+    tracks[1].close()
+    setStart(false)
+    setInCall(false)
+  }
+
+  return (
+    <Grid container spacing={2} alignItems='center'>
+      <Grid item>
+        <Button
+          variant='contained'
+          color={trackState.audio ? 'primary' : 'secondary'}
+          onClick={() => mute('audio')}
+        >
+          {trackState.audio ? <MicIcon /> : <MicOffIcon />}
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant='contained'
+          color={trackState.video ? 'primary' : 'secondary'}
+          onClick={() => mute('video')}
+        >
+          {trackState.video ? <VideocamIcon /> : <VideocamOffIcon />}
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+          variant='contained'
+          color='default'
+          onClick={() => leaveChannel()}
+        >
+          Leave
+          <ExitToAppIcon />
+        </Button>
+      </Grid>
+    </Grid>
+  )
 }
-
-export default Controls

@@ -1,98 +1,81 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import * as agoraSettings from '../../settings';
-import Controls from './Controls';
-import Videos from './Videos';
-import { Grid } from '@mui/material';
-import AgoraVideo from './AgoraVideo';
+import React, { Fragment, useEffect, useState } from 'react'
+import * as agoraSettings from '../../settings'
+import Controls from './Controls'
+import Videos from './Videos'
+import { Grid } from '@mui/material'
+import AgoraVideo from './AgoraVideo'
 
 const VideoChat = ({ setInCall }) => {
-  const [users, setUsers] = useState([]);
-  const [start, setStart] = useState(false);
-  const client = agoraSettings.useClient();
-  const {ready, tracks} = agoraSettings.useMicrophoneAndCameraTracks();
-  const channelName = agoraSettings.channelName;
+  // useEffect(() => {
+  //   let init = async name => {
+  //     client.on('user-published', async (user, mediaType) => {
+  //       await client.subscribe(user, mediaType)
 
-  const {appId, appToken} = agoraSettings.config;
+  //       if (mediaType === 'video') {
+  //         setUsers(prevUsers => [...prevUsers, users])
+  //       }
 
-  useEffect(() => {
-    let init = async (name) => {
-      client.on('user-published', async (user, mediaType) => {
-        await client.subscribe(user, mediaType);
+  //       if (mediaType === 'audio') {
+  //         user.audioTrack.play()
+  //       }
+  //     })
 
-        if(mediaType === 'video') {
-          setUsers((prevUsers) => [...prevUsers, users]);
-        }
+  //     client.on('user-unpublished', (user, mediaType) => {
+  //       if (mediaType === 'audio') {
+  //         if (user.audioTrack) user.audioTrack.stop()
 
-        if(mediaType === 'audio') {
-          user.audioTrack.play();
-        }
-      });
+  //         if (mediaType === 'video') {
+  //           setUsers(prevUsers => {
+  //             return prevUsers.filter(User => User.uid !== user.uid)
+  //           })
+  //         }
+  //       }
+  //     })
 
-      client.on('user-unpublished', (user, mediaType) => {
-        if(mediaType === 'audio') {
-          if(user.audioTrack) user.audioTrack.stop();
-  
-          if(mediaType === 'video') {
-            setUsers((prevUsers) => {
-              return prevUsers.filter((User) => User.uid !== user.uid);
-            });
-          }
-        }
-      });
-  
-      client.on('user-left', (user) => {
-        setUsers((prevUsers) => {
-          return prevUsers.filter((User) => User.uid !== user.uid);
-        });
-      });
-  
-      try {
-        await client.join(appId, name, appToken, null);
-      } catch (error) {
-        console.log('error occured ', error);
-      }
+  //     client.on('user-left', user => {
+  //       setUsers(prevUsers => {
+  //         return prevUsers.filter(User => User.uid !== user.uid)
+  //       })
+  //     })
 
-      if(tracks) await client.publish([tracks[0], tracks[1]]);
+  //     try {
+  //       await client.join(appId, name, appToken, null)
+  //     } catch (error) {
+  //       console.log('error occured ', error)
+  //     }
 
-      setStart(true);
-    }
+  //     if (tracks) await client.publish([tracks[0], tracks[1]])
 
-    if(ready && tracks) {
-      try {
-        init(channelName);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [client, ready, channelName, tracks]);
-  
-  return (
-    <Fragment>
-        <Grid container direction='column' style={{ height: '100%' }}>
-          <Grid item style={{ height: '5%' }}> 
-            {
-              ready && tracks && (
-                <Controls 
-                  setInCall={setInCall}
-                  setStart={setStart}
-                  tracks={tracks}
-                />
-              )
-            }
-          </Grid>
-          <Grid item style={{ height: '95%' }}>
-            {
-              start && tracks && (
-                <Videos  
-                  users={users}
-                  tracks={tracks}
-                />
-              )
-            }
-          </Grid>
-        </Grid>
-    </Fragment>
-  )
+  //     setStart(true)
+  //   }
+
+  //   if (ready && tracks) {
+  //     try {
+  //       init(channelName)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  // }, [client, ready, channelName, tracks])
+  return <AgoraVideo />
+  // return (
+  //   <Fragment>
+  //     <Grid container direction='column' style={{ height: '100%' }}>
+  //       <Grid item style={{ height: '5%' }}>
+  //         {ready && tracks && (
+  //           <Controls
+  //             setInCall={setInCall}
+  //             setStart={setStart}
+  //             tracks={tracks}
+  //           />
+  //         )}
+  //       </Grid>
+  //       <Grid item style={{ height: '95%' }}>
+  //         {start && tracks && <Videos users={users} tracks={tracks} />}
+  //       </Grid>
+  //     </Grid>
+  //   </Fragment>
+  // )
 }
 
 export default VideoChat
