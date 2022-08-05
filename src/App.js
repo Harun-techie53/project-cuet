@@ -9,7 +9,7 @@ import ContactScreen from './screens/ContactScreen';
 import Footer from './components/Footer';
 import './App.css';
 import VideoChatScreen from './screens/VideoChatScreen';
-import ResearchScreen from './screens/ResearchScreen';
+import AllResearchesScreen from './screens/AllResearchesScreen';
 import React, { useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import {IconButton} from '@mui/material';
@@ -22,7 +22,7 @@ import {
   SIGN_OUT_EVENT,
   SIGN_UP_EVENT
 } from './actionTypes/clickEventActionTypes';
-import {connectWithSocketServer} from './realTimeCommunication/socketConnection';
+import ResearchScreen from './screens/ResearchScreen';
 
 function App() {
   const dispatch = useDispatch();
@@ -65,17 +65,14 @@ function App() {
     dispatch(fetchAuthUserHandler());
   }, [authToken]);
   
-  useEffect(() => {
-    connectWithSocketServer();
-  }, []);
-  
   return (
     <div className='relative'>
       <Header/>
       <main>
         <Routes>
           <Route path='/dashboard' element={<DashboardScreen/>} />
-          <Route path='/researches' element={<ResearchScreen/>} />
+          <Route path='/researches' element={<AllResearchesScreen/>} />
+          <Route path='/research/:researchId' element={<ResearchScreen/>} />
           <Route path='/videoChat' element={<VideoChatScreen/>} />
           <Route path='/contact' element={<ContactScreen/>} />
           <Route path="/about" element={<AboutScreen/>} />

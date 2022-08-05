@@ -5,6 +5,6 @@ export const createRoomHandler = () => (dispatch) => {
     dispatch({
         type: OPEN_ROOM
     });
-
+    console.log('Check Socket')
     socketConnection.createRoomHandler();
 }

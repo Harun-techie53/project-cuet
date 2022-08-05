@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ResearchCard from '../components/Research/ResearchCard';
 
 const HomeScreen = () => {
   return (
@@ -25,7 +26,7 @@ const HomeScreen = () => {
             Research Works
           </h3>
           <Link 
-            to='/'
+            to='/researches'
             className='text-sm font-semibold hover:text-blue-400'
           >
             View all research works
@@ -33,69 +34,9 @@ const HomeScreen = () => {
           </Link>
         </div>
         <div className='flex flex-col items-center py-4 lg:justify-evenly lg:py-4 lg:flex-row'>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt="green iguana"
-              height="140"
-              image="../../images/VC_Building.jpg"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lorem Ipsum
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt="green iguana"
-              height="140"
-              image="../../images/VC_Building.jpg"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lorem Ipsum
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt="green iguana"
-              height="140"
-              image="../../images/VC_Building.jpg"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Lorem Ipsum
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
+          <ResearchCard/>
+          <ResearchCard/>
+          <ResearchCard/>
         </div>
       </section>
       <section className='flex flex-col space-y-8 items-center'>

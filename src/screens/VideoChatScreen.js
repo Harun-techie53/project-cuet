@@ -1,22 +1,32 @@
-import React from 'react';
-import { Typography, AppBar } from '@mui/material';
-import { styled } from "@mui/system";
+import React, {Fragment, useState} from 'react';
+import VideoChat from '../components/VideoChat2';
+import { Button } from '@mui/material';
 
-import Sidebar from '../components/VideoChat/Sidebar/Sidebar';
-import Container from '../components/VideoChat/Container/Container';
+// import Sidebar from '../components/VideoChat/Sidebar/Sidebar';
+// import Container from '../components/VideoChat/Container/Container';
+// import { getAuthToken } from '../utils';
 
-const Wrapper = styled("div")({
-  width: "100%",
-  height: "100vh",
-  display: "flex",
-});
+// const Wrapper = styled("div")({
+//   width: "100%",
+//   height: "100vh",
+//   display: "flex",
+// });
 
 const VideoChatScreen = () => {
+  const [inCall, setInCall] = useState(false);
+  
   return (
-      <Wrapper>
-        <Sidebar/>
-        <Container/>
-      </Wrapper>
+      <Fragment>
+        {
+          inCall ? (
+            <VideoChat setInCall={setInCall} />
+          ) : (
+          <Button color='primary' onClick={() => setInCall(true)}>
+            Join Call
+          </Button>
+          )
+        }
+      </Fragment>
   );
 };
 

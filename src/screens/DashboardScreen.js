@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import ProfileSection from '../components/ProfileSection';
-import PublishedPaperSection from '../components/PublishedPaperSection';
-import ResearchUploadForm from '../components/ResearchUploadForm';
+import ResearchUploadForm from '../components/Research/ResearchUploadForm';
 
 const DashboardScreen = () => {
     const [open, setOpen] = useState(true);
@@ -10,8 +9,7 @@ const DashboardScreen = () => {
     { title: "Profile"},
     { title: "Results"},
     { title: "Upload Research"},
-    { title: "Research Works" },
-    { title: "Published Papers" }
+    { title: "Research Works" }
   ];
 
   // if(selectVal === 0) {
@@ -83,12 +81,6 @@ const DashboardScreen = () => {
         {
           selectVal === 2 && (
             <ResearchUploadForm/>
-          )
-        }
-
-        {
-          selectVal === 3 && (
-            <PublishedPaperSection/>
           )
         }
       </div>

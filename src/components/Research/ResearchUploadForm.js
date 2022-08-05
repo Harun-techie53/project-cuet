@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react'
 import { useDispatch } from 'react-redux';
-import {createResearchHandler} from '../actions/researchAction';
+import {createResearchHandler} from '../../actions/researchAction';
 
 const ResearchUploadForm = () => {
     const pdfFileRef = useRef();
@@ -10,7 +10,7 @@ const ResearchUploadForm = () => {
         slug: '',
         description: '',
         pdfFile: []
-    });
+    }); 
 
     const { title, slug, description } = researchInputFields;
 

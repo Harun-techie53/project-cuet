@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
+import api from '../config';
 
 const ProfileSection = () => {
     const authUserDetails = useSelector((state) => state.authReducer.authUserDetails);
@@ -17,7 +18,7 @@ const ProfileSection = () => {
         <div className='cursor-pointer'>
             <img 
                 className='rounded-full ring'
-                src='#' 
+                src={api + authUserDetails?.photo} 
             />
         </div>
         <span className='font-bold'>
