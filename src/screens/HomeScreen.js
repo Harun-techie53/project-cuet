@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import Card from '@mui/material/Card';
@@ -8,10 +8,19 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ResearchCard from '../components/Research/ResearchCard';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAllResearches } from '../actions/researchAction';
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(fetchAllResearches());
+    }, []);
+  const researchReducer = useSelector(state => state.researchReducer);
+  const isLoading = researchReducer.isLoading ? researchReducer.isLoading : null;
+  const researches = researchReducer.researches ? researchReducer.researches : null;
   return (
-    <div className='flex flex-col space-y-10'>
+    <div className='flex flex-col space-y-10 lg:pb-12'>
       <section>
         <div>
           <img 
@@ -33,10 +42,14 @@ const HomeScreen = () => {
             <DoubleArrowIcon sx={{ fontSize: 'small' }}/>
           </Link>
         </div>
-        <div className='flex flex-col items-center py-4 lg:justify-evenly lg:py-4 lg:flex-row'>
-          <ResearchCard/>
-          <ResearchCard/>
-          <ResearchCard/>
+        <div className='flex flex-col flex-start py-4 lg:justify-evenly lg:flex-row'>
+          {
+            researches?.map((research, index) => {
+              if(index < 3) {
+                return <ResearchCard research={research} />
+              }
+            })
+          }
         </div>
       </section>
       <section className='flex flex-col space-y-8 items-center'>

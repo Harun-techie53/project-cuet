@@ -10,14 +10,16 @@ export const createResearchHandler = (researchFields) => async(dispatch) => {
         title,
         slug,
         description,
-        pdfFiles
+        pdfFile
     } = researchFields;
     const researchFormData = new FormData();
 
     researchFormData.append('title', title);
     researchFormData.append('slug', slug);
     researchFormData.append('description', description);
-    researchFormData.append('pdf', pdfFiles);
+    for (let i = 0 ; i < pdfFile.length ; i++) {
+        researchFormData.append("pdf", pdfFile[i]);
+    }
     try {
         dispatch({
             type: researchActionTypes.CREATE_RESEARCH_REQUEST
@@ -33,14 +35,13 @@ export const createResearchHandler = (researchFields) => async(dispatch) => {
                 }
             }
         );
-        console.log(data);
         
-        // dispatch({
-        //     type: researchActionTypes.CREATE_RESEARCH_SUCCESS,
-        //     payload: {
-        //         data: data.data.research
-        //     }
-        // });
+        dispatch({
+            type: researchActionTypes.CREATE_RESEARCH_SUCCESS,
+            payload: {
+                data: data.data.research
+            }
+        });
     } catch (err) {
         console.log(err);
     }

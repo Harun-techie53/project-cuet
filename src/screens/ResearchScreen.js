@@ -2,6 +2,10 @@ import React, {useEffect, useState, Fragment} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../config';
 import { Breadcrumbs } from '@mui/material';
+import { Viewer } from '@react-pdf-viewer/core';
+import CHECK from '../../../server/public/pdfs/user-6d77de88-c725-46dd-b8e8-fe04928f0f24-1659984406625.pdf'
+// Import the styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
 
 const ResearchScreen = () => {
     const {researchId} = useParams();
@@ -23,7 +27,7 @@ const ResearchScreen = () => {
     }, [researchId]);
     
   return (
-    <Fragment>
+    <div className="lg:pb-28">
         {
             isResearchLoading ? (
                 <p>
@@ -63,6 +67,20 @@ const ResearchScreen = () => {
                                 {research?.description}
                             </p>
                         </div>
+                        <div>
+                            {/* <PDFViewer
+                                document={{
+                                    url: '../../Introduction.pdf',
+                                }}
+                            /> */}
+                            <Viewer fileUrl={"../../Introduction.pdf"} />
+                            {/* <Document file="../../Introduction.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                                <Page pageNumber={pageNumber} />
+                            </Document> */}
+                            {/* <PictureAsPdfIcon sx={{ fontSize: 50, color: "teal" }}/> */}
+                            {/* <object width="100%" height="400" data="../../Introduction.pdf" type="application/pdf"></object> */}
+                            {/* <iframe src="../../Introduction.pdf" frameborder="0" height="500px" width="100%"></iframe> */}
+                        </div>
                         <div className='space-y-2'>
                             <h3 className='text-2xl font-semibold'>
                                 Authored By
@@ -90,7 +108,7 @@ const ResearchScreen = () => {
                 </div>
             )
         }
-    </Fragment>
+    </div>
   )
 }
 

@@ -30,6 +30,7 @@ const ResearchUploadForm = () => {
 
     const handleResearchFormSubmit = (e) => {
         e.preventDefault();
+        // console.log(rese)
         dispatch(createResearchHandler(researchInputFields));
         setResearchInputFields({
             ...researchInputFields,
@@ -51,7 +52,7 @@ const ResearchUploadForm = () => {
 			<div className="space-y-2 col-span-full lg:col-span-1">
 				<p className="font-medium">Reseach Inormation</p>
 				<p className="text-xs">
-                    Upload Your Personal Research
+                    Upload Your Research
                 </p>
 			</div>
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
@@ -95,16 +96,22 @@ const ResearchUploadForm = () => {
 				</div>
                 <div className="col-span-3">
                     <label for="research-thumbnail" className="text-sm">
-                        Research Thumbnail
+                        Research PDF
                     </label>
-                    <div 
-                        className="flex items-center space-x-2"
-                    >
+                    <div>
                         <input 
                             type='file' 
                             multiple
+                            ref={pdfFileRef}
                             onChange={handleFileChange}
                         />
+                        {/* <button 
+                            type="button" 
+                            className="px-4 py-2 border rounded-md dark:dark:border-gray-100"
+                            onChange={() => pdfFileRef.current.focus()}
+                        >
+                            Upload PDF
+                        </button> */}
                         {/* <button 
                             type="button" 
                             className="px-4 py-2 border rounded-md dark:dark:border-gray-100"
@@ -112,17 +119,6 @@ const ResearchUploadForm = () => {
                             Upload Thumbnail
                         </button> */}
                     </div>
-                </div>
-                <div className="col-span-3">
-                    <label for="research-thumbnail" className="text-sm">
-                        Research Thumbnail
-                    </label>
-                    <form 
-                        className="flex items-center space-x-2"
-                    >
-                        <img src="https://source.unsplash.com/30x30/?random" alt="" className="w-10 h-10 rounded-full dark:dark:bg-gray-500 dark:dark:bg-gray-700" />
-                        <button type="submit" className="px-4 py-2 border rounded-md dark:dark:border-gray-100">Change</button>
-                    </form>
                 </div>
                 <button
                     type="submit"

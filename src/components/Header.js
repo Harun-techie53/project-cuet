@@ -44,7 +44,7 @@ const Header = () => {
                 <ul className="flex font-semibold justify-between">
                     {
                         authToken && (
-                            <li className="nav-el">
+                            <li className="nav-el font-semibold text-slate-900">
                                 <Link to='/dashboard'>
                                     Dashboard
                                 </Link>
@@ -52,7 +52,7 @@ const Header = () => {
                         )
                     }
                     <li 
-                        className={`nav-el cursor-pointer`}
+                        className={`nav-el cursor-pointer font-semibold text-slate-900`}
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
@@ -81,17 +81,17 @@ const Header = () => {
                             Course Materials
                         </MenuItem>
                     </Menu>
-                    <li className="nav-el">
+                    <li className="nav-el font-semibold text-slate-900">
                         <Link to='/researches'>
                             Research
                         </Link>
                     </li>
-                    <li className="nav-el">
+                    <li className="nav-el font-semibold text-slate-900">
                         <Link to='/about'>
                             About
                         </Link>
                     </li>
-                    <li className="nav-el">
+                    <li className="nav-el font-semibold text-slate-900">
                         <Link to='/contact'>
                             Contact
                         </Link>

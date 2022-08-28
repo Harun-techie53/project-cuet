@@ -1,10 +1,10 @@
 import { createClient, createMicrophoneAndCameraTracks } from 'agora-rtc-react'
-
-const appId = 'cb594a754b444f8bb17cbd070dff5fbf'
+//d7cc4be0a6fc440c95df7473c9995111
+const appId = 'd7cc4be0a6fc440c95df7473c9995111'
 const token =
-  '006cb594a754b444f8bb17cbd070dff5fbfIABkLQ60oYoL6PgFnMFl1vlUxh1O3mocQRMZt0J28ssfkmM19B4AAAAAEACOhaHHC67uYgEAAQALru5i'
+  '006d7cc4be0a6fc440c95df7473c9995111IAC40pueJE+m7q+crgxTXTSxw8BMLujVjGJMgTQw4Nq59dfYYSgAAAAAEACxI7THqwf6YgEAAQCrB/pi'
 
 export const config = { mode: 'rtc', codec: 'vp8', appId: appId, token: token }
 export const useClient = createClient(config)
 export const useMicrophoneAndCameraTracks = createMicrophoneAndCameraTracks()
-export const channelName = 'JOIN'
+export const channelName = 'join'

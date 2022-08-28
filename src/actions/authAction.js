@@ -111,6 +111,8 @@ export const signUpHandler = (
           }),
           config
       );
+
+      console.log(data)
   
       if(data && data.status === 'success') {
         dispatch({

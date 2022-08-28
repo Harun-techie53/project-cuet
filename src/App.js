@@ -80,6 +80,7 @@ function App() {
           <Route path="/" element={<HomeScreen/>} />
         </Routes>
       </main>
+      {/* <Footer/> */}
       <AuthSnackbar
         handleClose={handleClose}
         action={action}

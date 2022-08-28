@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ProfileSection from '../components/ProfileSection';
 import ResearchUploadForm from '../components/Research/ResearchUploadForm';
+import ResearchByUser from '../components/Research/ResearchByUser';
 
 const DashboardScreen = () => {
     const [open, setOpen] = useState(true);
@@ -22,7 +23,7 @@ const DashboardScreen = () => {
   //   console.log('Academic Calendar Selected!')
   // }
   return (
-    <div className='bg-gray-300'>
+    <div className='bg-gray-300 h-fit'>
       <div className="flex">
       <div
         className={` ${
@@ -81,6 +82,11 @@ const DashboardScreen = () => {
         {
           selectVal === 2 && (
             <ResearchUploadForm/>
+          )
+        }
+        {
+          selectVal === 3 && (
+            <ResearchByUser/>
           )
         }
       </div>
