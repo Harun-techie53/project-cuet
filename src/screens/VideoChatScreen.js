@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import VideoChat from '../components/VideoChat2'
 import { Button } from '@mui/material'
+import Footer from "../components/Footer";
 
 // import Sidebar from '../components/VideoChat/Sidebar/Sidebar';
 // import Container from '../components/VideoChat/Container/Container';
@@ -14,17 +15,10 @@ import { Button } from '@mui/material'
 
 const VideoChatScreen = () => {
   const [inCall, setInCall] = useState(false)
-  return <VideoChat setInCall={setInCall} />
   return (
-    <Fragment>
-      {inCall ? (
-        <VideoChat setInCall={setInCall} />
-      ) : (
-        <Button color='primary' onClick={() => setInCall(true)}>
-          Join Call
-        </Button>
-      )}
-    </Fragment>
+    <div className="my-5">
+      <VideoChat setInCall={setInCall} />
+    </div>
   )
 }
 

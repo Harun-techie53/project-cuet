@@ -1,8 +1,9 @@
 import React from 'react'
+import Footer from "../components/Footer";
 
 const ContactScreen = () => {
   return (
-    <section className="py-6 bg-gray-800 text-gray-50 lg:pb-72">
+    <section className="py-6 bg-gray-800 text-gray-50 lg:pb-72 h-screen flex flex-col justify-between">
 	<div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
 		<div className="py-6 md:py-0 md:px-6">
 			<h1 className="text-4xl font-bold">Get in touch</h1>
@@ -47,6 +48,7 @@ Chittagong - 4349, Bangladesh</span>
 			<button type="button" className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-violet-400 text-gray-900 focus:ring-violet-400 hover:ring-violet-400">Submit</button>
 		</form>
 	</div>
+	<Footer/>
 </section>
   )
 }

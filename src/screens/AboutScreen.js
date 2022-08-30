@@ -1,10 +1,11 @@
 import React from 'react'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
+import Footer from "../components/Footer";
 
 const AboutScreen = () => {
   return (
-    <div>
+    <div className="flex flex-col justify-between">
       <section className='relative'>
         <div className='relative blur-sm backdrop-blur-md backdrop-brightness-50 bg-white/50'>
           <img 
@@ -65,6 +66,7 @@ const AboutScreen = () => {
           </p>
         </div>
       </section>
+      <Footer/>
     </div>
   )
 }

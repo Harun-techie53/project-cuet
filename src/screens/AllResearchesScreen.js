@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { fetchAllResearches } from '../actions/researchAction';
 import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
+import Footer from "../components/Footer";
 
 const AllResearchesScreen = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const AllResearchesScreen = () => {
     const allResearches = researchState.researches;
     
   return (
-    <section className="dark:dark:bg-gray-800 dark:dark:text-gray-100">
+    <section className="dark:dark:bg-gray-800 dark:dark:text-gray-100 flex flex-col justify-between h-screen">
         <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
             {/* <a rel="noopener noreferrer" href="#" className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:dark:bg-gray-900">
                 <img src="https://source.unsplash.com/random/480x360" alt="" className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:dark:bg-gray-500" />
@@ -45,10 +46,8 @@ const AllResearchesScreen = () => {
                     ))
                 }
             </div>
-            <div className="flex justify-center">
-                <button type="button" className="px-6 py-3 text-sm rounded-md hover:underline dark:dark:bg-gray-900 dark:dark:text-gray-400">Load more posts...</button>
-            </div>
         </div>
+        <Footer/>
     </section>
   )
 }

@@ -6,7 +6,6 @@ import CourseEnrollScreen from './screens/CourseEnrollScreen';
 import AboutScreen from './screens/AboutScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import ContactScreen from './screens/ContactScreen';
-import Footer from './components/Footer';
 import './App.css';
 import VideoChatScreen from './screens/VideoChatScreen';
 import AllResearchesScreen from './screens/AllResearchesScreen';

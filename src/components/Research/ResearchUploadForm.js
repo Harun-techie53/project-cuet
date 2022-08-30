@@ -1,18 +1,25 @@
 import React, {useState, useRef} from 'react'
 import { useDispatch } from 'react-redux';
-import {createResearchHandler} from '../../actions/researchAction';
+import api from "../../config";
+import { getRegisteredConfig } from '../../utils';
+import { storage } from '../../firebase';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getAuthToken } from '../../utils';
 
 const ResearchUploadForm = () => {
     const pdfFileRef = useRef();
     const dispatch = useDispatch();
+    const config = getRegisteredConfig();
+    const [progress, setProgress] = useState(0);
     const [researchInputFields, setResearchInputFields] = useState({
         title: '',
         slug: '',
         description: '',
         pdfFile: []
     }); 
+    const authToken = getAuthToken();
 
-    const { title, slug, description } = researchInputFields;
+    const { title, slug, description, pdfFile } = researchInputFields;
 
     const handleInputChange = (e) => {
         setResearchInputFields({
@@ -24,14 +31,44 @@ const ResearchUploadForm = () => {
     const handleFileChange = (e) => {
         setResearchInputFields({
             ...researchInputFields,
-            pdfFile: e.target.files
+            pdfFile: e.target.files[0]
         });
     }
 
-    const handleResearchFormSubmit = (e) => {
+    const handleUpload = (e) => {
         e.preventDefault();
-        // console.log(rese)
-        dispatch(createResearchHandler(researchInputFields));
+        const storageRef = ref(storage, `pdfs/${pdfFile.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, pdfFile);
+
+    uploadTask.on("state_changed",
+      (snapshot) => {
+        const progress =
+          Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        setProgress(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      async () => {
+        const url = await getDownloadURL(uploadTask.snapshot.ref);
+        const {data} = await api.post(
+            '/research', 
+            {
+                title,
+                slug,
+                description,
+                pdf: url
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Access-Control-Allow-Origin' : '*'
+                }
+            }
+        )
+            console.log(data);
+    });
+
         setResearchInputFields({
             ...researchInputFields,
             title: '',
@@ -40,11 +77,12 @@ const ResearchUploadForm = () => {
             pdfFile: []
         });
     }
+
   return (
     <section className="p-6 py-4 dark:dark:bg-gray-800 dark:dark:text-gray-50">
 	<form 
         novalidate=""
-        onSubmit={handleResearchFormSubmit}
+        onSubmit={handleUpload}
         className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
         encType="multipart/form-data"
     >
