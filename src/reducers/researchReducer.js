@@ -28,6 +28,14 @@ const researchReducer = (state={}, action) => {
                     action.payload.data
                 ]
             }
+        case researchActionTypes.DELETE_RESEARCH_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                researches: [
+                    ...state.researches.filter((research) => research._id !== action.payload.researchId)
+                ]
+            }
         default:
             return state;
     }

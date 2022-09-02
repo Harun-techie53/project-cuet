@@ -24,6 +24,7 @@ const ResearchScreen = () => {
       fetchResearchHandler();
     }, [researchId]);
     
+    console.log('researchData',research)
   return (
     <div className="lg:pb-28">
         {
@@ -71,7 +72,7 @@ const ResearchScreen = () => {
                                     url: '../../Introduction.pdf',
                                 }}
                             /> */}
-                            <Viewer fileUrl={research?.pdf} />
+                            <Viewer fileUrl={'https://firebasestorage.googleapis.com/v0/b/project-1-15dc6.appspot.com/o/pdfs%2F16%20Batch.pdf?alt=media&token=fe084fa9-17dd-4efa-9e44-903fd9ac969f'} />
                             {/* <Document file="../../Introduction.pdf" onLoadSuccess={onDocumentLoadSuccess}>
                                 <Page pageNumber={pageNumber} />
                             </Document> */}

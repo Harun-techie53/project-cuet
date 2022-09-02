@@ -85,3 +85,23 @@ export const fetchResearchHandler = (researchId) => async (dispatch) => {
         console.log(err);
     }
 }
+
+export const deleteResearchHandler = (researchId) => async (dispatch) => {
+    const config = getRegisteredConfig();
+    try {
+        dispatch({
+            type: researchActionTypes.DELETE_RESEARCH_REQUEST
+        });
+        
+        const {data} = await api.delete(`/research/${researchId}`, config);
+
+        dispatch({
+            type: researchActionTypes.DELETE_RESEARCH_SUCCESS,
+            payload: {
+                researchId
+            }
+        });
+    } catch (err) {
+        console.log(err.message);
+    }
+}

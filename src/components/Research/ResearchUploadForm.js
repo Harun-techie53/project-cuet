@@ -66,16 +66,15 @@ const ResearchUploadForm = () => {
                 }
             }
         )
-            console.log(data);
-    });
-
-        setResearchInputFields({
+        
+        if(data.status === "success") setResearchInputFields({
             ...researchInputFields,
             title: '',
             slug: '',
             description: '',
             pdfFile: []
         });
+    });
     }
 
   return (

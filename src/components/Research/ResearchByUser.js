@@ -3,8 +3,11 @@ import api from '../../config';
 import { getRegisteredConfig } from '../../utils';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteResearchHandler } from '../../actions/researchAction';
 
 const ResearchByUser = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [researches, setResearches] = useState([]);
     const config = getRegisteredConfig();
@@ -53,7 +56,11 @@ const ResearchByUser = () => {
                       <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2'>
                         Update
                       </button>
-                      <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
+                      <button 
+                        onClick={() => {
+                          dispatch(deleteResearchHandler(research._id))
+                        }}
+                        className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
                         Delete
                       </button>
                     </div>

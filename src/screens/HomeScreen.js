@@ -31,7 +31,7 @@ const HomeScreen = () => {
             />
           </div>
         </section>
-        <section>
+        <section className="w-full">
           <div className="text-center flex flex-col space-y-3">
             <h3 className='text-4xl font-bold text-gray-700'>
               Research Works

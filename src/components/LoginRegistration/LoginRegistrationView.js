@@ -39,6 +39,15 @@ const LoginRegistrationView = ({
                         <h1 className=' text-xl font-bold mb-2 '>
                             Create Account
                         </h1>
+                        <FormControlLabel 
+                            control={<Checkbox defaultChecked />} 
+                            label="I am a faculty member"
+                            checked={isTeacher}
+                            onChange={() => setSignUpFields({
+                                ...signUpFields,
+                                isTeacher: !isTeacher
+                            })}
+                        />
                         <input 
                             name="name"
                             className='input_tag' 
@@ -52,7 +61,7 @@ const LoginRegistrationView = ({
                             name="email"
                             className='input_tag' 
                             type="email" 
-                            placeholder="u<STUDENT ID>@student.cuet.ac.bd"
+                            placeholder="Email Here"
                             value={email}
                             onChange={handleChange}
                             required
@@ -74,15 +83,6 @@ const LoginRegistrationView = ({
                             value={password2}
                             onChange={handleChange}
                             minLength="8"
-                        />
-                        <FormControlLabel 
-                            control={<Checkbox defaultChecked />} 
-                            label="I am a faculty member"
-                            checked={isTeacher}
-                            onChange={() => setSignUpFields({
-                                ...signUpFields,
-                                isTeacher: !isTeacher
-                            })}
                         />
 
                         <div className='w-full py-3'>
@@ -112,7 +112,7 @@ const LoginRegistrationView = ({
                             name="email"
                             className='input_tag' 
                             type="text" 
-                            placeholder="u<STUDENT ID>@student.cuet.ac.bd"
+                            placeholder="Email Here"
                             value={loginEmail}
                             onChange={handleSignInFieldsChange}
                         />
@@ -120,7 +120,7 @@ const LoginRegistrationView = ({
                             name="password"
                             className='input_tag' 
                             type="password" 
-                            placeholder="PASSWORD *"
+                            placeholder="Password Here"
                             value={loginPassword}
                             onChange={handleSignInFieldsChange}
                         />
